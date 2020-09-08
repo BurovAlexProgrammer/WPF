@@ -1,0 +1,29 @@
+﻿<Window x:Class="WpfTextEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTextEditor"
+        mc:Ignorable="d"
+        Title="Программа" Height="450" Width="800">
+    <Grid>
+        <Menu FontSize="14" >
+            <MenuItem Header="Файл">
+                <MenuItem x:Name="miNewFile" Header="Новый файл" Click="miNewFile_Click"/>
+                <MenuItem x:Name="miOpenFile" Header="Открыть файл"/>
+                <MenuItem x:Name="miSaveFile" Header="Сохранить"/>
+                <MenuItem x:Name="miQuit" Header="Выйти"/>
+            </MenuItem>
+            <MenuItem x:Name="miEdit" Header="Редактировать">
+                <MenuItem Header="Шрифты">
+                    <MenuItem x:Name="miFont1" Header="Times New Roman" FontFamily="Times New Roman" />
+                    <MenuItem x:Name="miFont2" Header="Calibri" FontFamily="Calibri" />
+                    <MenuItem x:Name="miFont3" Header="Yu Gothic" FontFamily="Yu Gothic" />
+                </MenuItem>
+                <MenuItem Header="Скопировать" Command="ApplicationCommands.Copy" InputGestureText="Ctrl+C"/>
+                <MenuItem Header="Вырезать" Command="ApplicationCommands.Cut" InputGestureText="Ctrl+X"/>
+                <MenuItem Header="Вставить" Command="ApplicationCommands.Paste" InputGestureText="Ctrl+V"/>
+            </MenuItem>
+        </Menu>
+    </Grid>
+</Window>
