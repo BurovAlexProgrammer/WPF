@@ -7,18 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\copy.ico" />
+    <None Remove="Icons\cut.ico" />
     <None Remove="Icons\exit.ico" />
     <None Remove="Icons\icon.png" />
     <None Remove="Icons\newFile.ico" />
     <None Remove="Icons\openFile.ico" />
+    <None Remove="Icons\paste.ico" />
     <None Remove="Icons\saveFile.ico" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Icons\copy.ico" />
+    <Resource Include="Icons\cut.ico" />
     <Resource Include="Icons\exit.ico" />
     <Resource Include="Icons\icon.png" />
     <Resource Include="Icons\newFile.ico" />
     <Resource Include="Icons\openFile.ico" />
+    <Resource Include="Icons\paste.ico" />
     <Resource Include="Icons\saveFile.ico" />
   </ItemGroup>
 

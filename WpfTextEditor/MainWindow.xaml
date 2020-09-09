@@ -42,9 +42,39 @@
                 <MenuItem Header="Вставить" Command="ApplicationCommands.Paste" InputGestureText="Ctrl+V"/>
             </MenuItem>
         </Menu>
+            <ToolBarTray DockPanel.Dock="Top">
+                <ToolBar>
+                    <Button x:Name="tbSave" ToolTip="Сохранить" Click="Toolbar_Click">
+                        <Image Source="/Icons/saveFile.ico" Height="16"/>
+                    </Button>
+                    <Button x:Name="tbOpen" ToolTip="Открыть" Click="Toolbar_Click">
+                        <Image Source="/Icons/openFile.ico" Height="16"/>
+                    </Button>
+                    <Separator/>
+                    <Button x:Name="tbCopy" ToolTip="Копировать" Command="ApplicationCommands.Copy">
+                        <Image Source="/Icons/copy.ico" Height="16"/>
+                    </Button>
+                    <Button x:Name="tbCut" ToolTip="Вырезать" Command="ApplicationCommands.Cut">
+                        <Image Source="/Icons/cut.ico" Height="16"/>
+                    </Button>
+                    <Button x:Name="tbPaste" ToolTip="Вставить" Command="ApplicationCommands.Paste">
+                        <Image Source="/Icons/paste.ico" Height="16"/>
+                    </Button>
+                    <Separator/>
+                    <Label Content="Размер шрифта"/>
+                    <ComboBox x:Name="selectFontSize" SelectionChanged="selectFontSize_SelectionChanged">
+                        <ComboBoxItem>10</ComboBoxItem>
+                        <ComboBoxItem IsSelected="True">14</ComboBoxItem>
+                        <ComboBoxItem>16</ComboBoxItem>
+                        <ComboBoxItem>20</ComboBoxItem>
+                        <ComboBoxItem>24</ComboBoxItem>
+                        <ComboBoxItem>32</ComboBoxItem>
+                        <ComboBoxItem>48</ComboBoxItem>
+                    </ComboBox>
+                </ToolBar>
+            </ToolBarTray>
 
-        
-            <TextBox></TextBox>
+            <TextBox x:Name="mainTextArea" FontSize="18" TextWrapping="Wrap"></TextBox>
         </DockPanel>
     </Grid>
 </Window>
