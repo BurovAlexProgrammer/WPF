@@ -5,25 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTextEditor"
         mc:Ignorable="d"
-        Title="Программа" Height="450" Width="800">
+        Title="Программа" Height="450" Width="800" x:Name="mainWindow">
     <Grid>
-        <Menu FontSize="14" >
+        <DockPanel>
+        <Menu x:Name="mainMenu" FontSize="14" DockPanel.Dock="Top">
             <MenuItem Header="Файл">
-                <MenuItem x:Name="miNewFile" Header="Новый файл" Click="miNewFile_Click"/>
-                <MenuItem x:Name="miOpenFile" Header="Открыть файл"/>
-                <MenuItem x:Name="miSaveFile" Header="Сохранить"/>
-                <MenuItem x:Name="miQuit" Header="Выйти"/>
+                <MenuItem x:Name="miNewFile" Header="Новый файл" Click="Menu_Click">
+                    <MenuItem.Icon>
+                        <Image Source="./Icons/newFile.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="miOpenFile" Header="Открыть файл" Click="Menu_Click">
+                    <MenuItem.Icon>
+                        <Image Source="./Icons/openFile.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="miSaveFile" Header="Сохранить" Click="Menu_Click">
+                    <MenuItem.Icon>
+                        <Image Source="./Icons/saveFile.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="miQuit" Header="Выйти" Click="Menu_Click">
+                    <MenuItem.Icon>
+                        <Image Source="./Icons/exit.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem x:Name="miEdit" Header="Редактировать">
                 <MenuItem Header="Шрифты">
-                    <MenuItem x:Name="miFont1" Header="Times New Roman" FontFamily="Times New Roman" />
-                    <MenuItem x:Name="miFont2" Header="Calibri" FontFamily="Calibri" />
-                    <MenuItem x:Name="miFont3" Header="Yu Gothic" FontFamily="Yu Gothic" />
+                    <MenuItem Tag="FontButton" Header="Times New Roman" FontFamily="Times New Roman"  Click="Menu_Click"/>
+                    <MenuItem Tag="FontButton" Header="Calibri" FontFamily="Calibri"  Click="Menu_Click"/>
+                    <MenuItem Tag="FontButton" Header="Yu Gothic" FontFamily="Yu Gothic"  Click="Menu_Click"/>
                 </MenuItem>
                 <MenuItem Header="Скопировать" Command="ApplicationCommands.Copy" InputGestureText="Ctrl+C"/>
                 <MenuItem Header="Вырезать" Command="ApplicationCommands.Cut" InputGestureText="Ctrl+X"/>
                 <MenuItem Header="Вставить" Command="ApplicationCommands.Paste" InputGestureText="Ctrl+V"/>
             </MenuItem>
         </Menu>
+
+        
+            <TextBox></TextBox>
+        </DockPanel>
     </Grid>
 </Window>

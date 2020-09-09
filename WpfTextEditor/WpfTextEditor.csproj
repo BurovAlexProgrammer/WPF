@@ -6,4 +6,20 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Icons\exit.ico" />
+    <None Remove="Icons\icon.png" />
+    <None Remove="Icons\newFile.ico" />
+    <None Remove="Icons\openFile.ico" />
+    <None Remove="Icons\saveFile.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\exit.ico" />
+    <Resource Include="Icons\icon.png" />
+    <Resource Include="Icons\newFile.ico" />
+    <Resource Include="Icons\openFile.ico" />
+    <Resource Include="Icons\saveFile.ico" />
+  </ItemGroup>
+
 </Project>
