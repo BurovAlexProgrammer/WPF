@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTextEditor"
         mc:Ignorable="d"
-        Title="Программа" Height="450" Width="800" x:Name="mainWindow">
+        Title="Ридер" Height="450" Width="800" x:Name="mainWindow" Icon="./Icons/t.ico">
     <Grid>
         <DockPanel>
         <Menu x:Name="mainMenu" FontSize="14" DockPanel.Dock="Top">

@@ -4,6 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <StartupObject>WpfTextEditor.App</StartupObject>
+    <ApplicationIcon>t.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,6 +17,7 @@
     <None Remove="Icons\openFile.ico" />
     <None Remove="Icons\paste.ico" />
     <None Remove="Icons\saveFile.ico" />
+    <None Remove="Icons\t.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +29,7 @@
     <Resource Include="Icons\openFile.ico" />
     <Resource Include="Icons\paste.ico" />
     <Resource Include="Icons\saveFile.ico" />
+    <Resource Include="Icons\t.ico" />
   </ItemGroup>
 
 </Project>
