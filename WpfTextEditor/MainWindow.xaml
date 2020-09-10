@@ -42,39 +42,67 @@
                 <MenuItem Header="Вставить" Command="ApplicationCommands.Paste" InputGestureText="Ctrl+V"/>
             </MenuItem>
         </Menu>
-            <ToolBarTray DockPanel.Dock="Top">
-                <ToolBar>
-                    <Button x:Name="tbSave" ToolTip="Сохранить" Click="Toolbar_Click">
-                        <Image Source="/Icons/saveFile.ico" Height="16"/>
-                    </Button>
-                    <Button x:Name="tbOpen" ToolTip="Открыть" Click="Toolbar_Click">
-                        <Image Source="/Icons/openFile.ico" Height="16"/>
-                    </Button>
-                    <Separator/>
-                    <Button x:Name="tbCopy" ToolTip="Копировать" Command="ApplicationCommands.Copy">
-                        <Image Source="/Icons/copy.ico" Height="16"/>
-                    </Button>
-                    <Button x:Name="tbCut" ToolTip="Вырезать" Command="ApplicationCommands.Cut">
-                        <Image Source="/Icons/cut.ico" Height="16"/>
-                    </Button>
-                    <Button x:Name="tbPaste" ToolTip="Вставить" Command="ApplicationCommands.Paste">
-                        <Image Source="/Icons/paste.ico" Height="16"/>
-                    </Button>
-                    <Separator/>
-                    <Label Content="Размер шрифта"/>
-                    <ComboBox x:Name="selectFontSize" SelectionChanged="selectFontSize_SelectionChanged">
-                        <ComboBoxItem>10</ComboBoxItem>
-                        <ComboBoxItem IsSelected="True">14</ComboBoxItem>
-                        <ComboBoxItem>16</ComboBoxItem>
-                        <ComboBoxItem>20</ComboBoxItem>
-                        <ComboBoxItem>24</ComboBoxItem>
-                        <ComboBoxItem>32</ComboBoxItem>
-                        <ComboBoxItem>48</ComboBoxItem>
-                    </ComboBox>
-                </ToolBar>
-            </ToolBarTray>
 
-            <TextBox x:Name="mainTextArea" FontSize="18" TextWrapping="Wrap"></TextBox>
+            <TabControl TabStripPlacement="Left">
+                <TabItem Header="Авторизация" FontSize="14">
+                    <Grid>
+                        <StackPanel>
+                            <Label x:Name="labelRegistration" Content="Регистрация" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" FontSize="24" FontWeight="Bold"/>
+                            <StackPanel Margin="0,32,0,0">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <Label Content="Пользователь" Width="100"/>
+                                    <TextBox x:Name="loginInput" MinWidth="200" Margin="16,0,0,0" />
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,8,0,0">
+                                    <Label Content="Пароль" Width="100"/>
+                                    <TextBox x:Name="passwordInput" MinWidth="200" Margin="16,0,0,0" />
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,16,0,0">
+                                    <Button x:Name="registerButton" Content="Регистрация" MinWidth="100" Click="Button_Click"/>
+                                    <Button x:Name="removeButton" Content="Удаление" MinWidth="100" Margin="16,0,0,0" Click="Button_Click"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Редактор" FontSize="14">
+                    <DockPanel>
+                    <ToolBarTray DockPanel.Dock="Top">
+                        <ToolBar>
+                            <Button x:Name="tbSave" ToolTip="Сохранить" Click="Toolbar_Click">
+                                <Image Source="/Icons/saveFile.ico" Height="16"/>
+                            </Button>
+                            <Button x:Name="tbOpen" ToolTip="Открыть" Click="Toolbar_Click">
+                                <Image Source="/Icons/openFile.ico" Height="16"/>
+                            </Button>
+                            <Separator/>
+                            <Button x:Name="tbCopy" ToolTip="Копировать" Command="ApplicationCommands.Copy">
+                                <Image Source="/Icons/copy.ico" Height="16"/>
+                            </Button>
+                            <Button x:Name="tbCut" ToolTip="Вырезать" Command="ApplicationCommands.Cut">
+                                <Image Source="/Icons/cut.ico" Height="16"/>
+                            </Button>
+                            <Button x:Name="tbPaste" ToolTip="Вставить" Command="ApplicationCommands.Paste">
+                                <Image Source="/Icons/paste.ico" Height="16"/>
+                            </Button>
+                            <Separator/>
+                            <Label Content="Размер шрифта"/>
+                            <ComboBox x:Name="selectFontSize" SelectionChanged="selectFontSize_SelectionChanged">
+                                <ComboBoxItem>10</ComboBoxItem>
+                                <ComboBoxItem IsSelected="True">14</ComboBoxItem>
+                                <ComboBoxItem>16</ComboBoxItem>
+                                <ComboBoxItem>20</ComboBoxItem>
+                                <ComboBoxItem>24</ComboBoxItem>
+                                <ComboBoxItem>32</ComboBoxItem>
+                                <ComboBoxItem>48</ComboBoxItem>
+                            </ComboBox>
+                        </ToolBar>
+                    </ToolBarTray>
+                    <TextBox x:Name="mainTextArea" FontSize="18" TextWrapping="Wrap"></TextBox>
+                    </DockPanel>
+                </TabItem>
+            </TabControl>
+
         </DockPanel>
     </Grid>
 </Window>

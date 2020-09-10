@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -95,6 +97,64 @@ namespace WpfTextEditor
             if (Double.TryParse(selectedItem?.Content.ToString(), out fontSize)) 
                 mainTextArea.FontSize = fontSize;
             mainTextArea.Focus();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender == registerButton)
+                Registration();
+            if (sender == removeButton)
+                RemoveLogin();
+        }
+
+        /// <summary>
+        /// Регистрация пользователя
+        /// </summary>
+        void Registration()
+        {
+            string connectionString = ConfigurationManager.AppSettings["connectionString"];
+
+            using (SqlConnection sql = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    if (sql.State == System.Data.ConnectionState.Closed)
+                        sql.Open();
+
+                    string query = "SELECT COUNT(1) FROM TestTable";
+                    SqlCommand sqlCom = new SqlCommand(query, sql);
+                    sqlCom.CommandType = System.Data.CommandType.Text;
+                    //sqlCom.Parameters.Add("",);
+
+                    int count = sqlCom.ExecuteScalar() as int? ?? 0;
+                    if (count == 0)
+                    {
+                        query = "INSERT INTO Users(login, password) VALUES (@login, @pass)";
+                        sqlCom = new SqlCommand(query, sql) { CommandType = System.Data.CommandType.Text};
+                        //sqlCom.Parameters.Add();
+
+                        sqlCom.ExecuteNonQuery();
+                        MessageBox.Show("Мы добавили вас в базу данных");
+                    } else
+                    {
+                        MessageBox.Show("Вы успешно авторизовались");
+                    }
+
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Удаления зарегистрированного пользователя
+        /// </summary>
+        void RemoveLogin()
+        {
+            var y = AesClass.Decrypt("AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA9Zo7t1TN7Uia6WE2VeIQ7gQAAAACAAAAAAAQZgAAAAEAACAAAAD33d1YXXcNh8PBD8iq04A/byxbqEfXf6p0KeYyheIzQQAAAAAOgAAAAAIAACAAAAC5q1/NSNJ+2sJKN1mY4X4KZ0jHz2o6XpwOUNRGTkzNIxAAAACzUZasQAH3xV9QnlTTONMTQAAAAC+EdexJy0a3KaoEByiBgcwG/pqiYsLhCxUdbq+DrA0QtRrO0EGfonrOnoK5GSE05+Xm+tiyLlfzN4pNdPN9GWA=");
+            MessageBox.Show(y);
         }
     }
 }
