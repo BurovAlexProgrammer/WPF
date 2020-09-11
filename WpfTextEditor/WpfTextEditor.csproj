@@ -25,6 +25,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="BurovSecureConnect">
+      <HintPath>C:\Users\User\source\repos\BurovSecureConnect\bin\Debug\netcoreapp3.1\BurovSecureConnect.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Icons\copy.ico" />
     <Resource Include="Icons\cut.ico" />
     <Resource Include="Icons\exit.ico" />

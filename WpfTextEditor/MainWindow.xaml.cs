@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -19,11 +20,10 @@ using System.Windows.Shapes;
 
 namespace WpfTextEditor
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        private static string stringConnection = "Data Source=wpl22.hosting.reg.ru;Initial Catalog=u0790449_BurovAV;Persist Security Info=True;User ID=u0790449_BurovAV;Password=Freedom88";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -93,7 +93,7 @@ namespace WpfTextEditor
         {
             if (mainTextArea == null) return;
             var selectedItem = selectFontSize.SelectedValue as ComboBoxItem;
-            var fontSize = 0d;
+            var fontSize = 14d;
             if (Double.TryParse(selectedItem?.Content.ToString(), out fontSize)) 
                 mainTextArea.FontSize = fontSize;
             mainTextArea.Focus();
@@ -112,40 +112,22 @@ namespace WpfTextEditor
         /// </summary>
         void Registration()
         {
-            string connectionString = ConfigurationManager.AppSettings["connectionString"];
+            var login = loginInput.Text.ToLower();
+            var pass = passwordInput.Text;
+            SqlCommand sqlCom = new SqlCommand($"SELECT * FROM WpfTextEditor_logins WHERE " +
+                $"login='{login}' AND password='{pass}'");
+            var dataTable = BurovSecure.ExecuteDataTable(sqlCom);
 
-            using (SqlConnection sql = new SqlConnection(connectionString))
+            if (dataTable.Rows.Count == 0)
             {
-                try
-                {
-                    if (sql.State == System.Data.ConnectionState.Closed)
-                        sql.Open();
-
-                    string query = "SELECT COUNT(1) FROM TestTable";
-                    SqlCommand sqlCom = new SqlCommand(query, sql);
-                    sqlCom.CommandType = System.Data.CommandType.Text;
-                    //sqlCom.Parameters.Add("",);
-
-                    int count = sqlCom.ExecuteScalar() as int? ?? 0;
-                    if (count == 0)
-                    {
-                        query = "INSERT INTO Users(login, password) VALUES (@login, @pass)";
-                        sqlCom = new SqlCommand(query, sql) { CommandType = System.Data.CommandType.Text};
-                        //sqlCom.Parameters.Add();
-
-                        sqlCom.ExecuteNonQuery();
-                        MessageBox.Show("Мы добавили вас в базу данных");
-                    } else
-                    {
-                        MessageBox.Show("Вы успешно авторизовались");
-                    }
-
-                }
-                catch (Exception exc)
-                {
-                    MessageBox.Show(exc.Message);
-                }
+                sqlCom = new SqlCommand($"INSERT INTO WpfTextEditor_logins (login, password) VALUES ('{login}', '{pass}')");
+                BurovSecure.ExecuteNonQuery(sqlCom);
+                MessageBox.Show("Мы добавили вас базу данных.");
+            } else
+            {
+                MessageBox.Show("вы успешно авторизованы.");
             }
+
         }
 
         /// <summary>
@@ -153,8 +135,23 @@ namespace WpfTextEditor
         /// </summary>
         void RemoveLogin()
         {
-            var y = AesClass.Decrypt("AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA9Zo7t1TN7Uia6WE2VeIQ7gQAAAACAAAAAAAQZgAAAAEAACAAAAD33d1YXXcNh8PBD8iq04A/byxbqEfXf6p0KeYyheIzQQAAAAAOgAAAAAIAACAAAAC5q1/NSNJ+2sJKN1mY4X4KZ0jHz2o6XpwOUNRGTkzNIxAAAACzUZasQAH3xV9QnlTTONMTQAAAAC+EdexJy0a3KaoEByiBgcwG/pqiYsLhCxUdbq+DrA0QtRrO0EGfonrOnoK5GSE05+Xm+tiyLlfzN4pNdPN9GWA=");
-            MessageBox.Show(y);
+            var login = loginInput.Text.ToLower();
+            var pass = passwordInput.Text;
+            SqlCommand sqlCom = new SqlCommand($"SELECT * FROM WpfTextEditor_logins WHERE " +
+                $"login='{login}' AND password='{pass}'");
+            var dataTable = BurovSecure.ExecuteDataTable(sqlCom);
+
+            if (dataTable.Rows.Count != 0)
+            {
+                sqlCom = new SqlCommand($"DELETE FROM WpfTextEditor_logins WHERE " +
+                    $"login='{login}' AND password='{pass}'");
+                BurovSecure.ExecuteNonQuery(sqlCom);
+                MessageBox.Show("Учетная запись удалена.");
+            }
+            else
+            {
+                MessageBox.Show("Не найдена пара логин/пароль.");
+            }
         }
     }
 }
