@@ -26,7 +26,8 @@
 
   <ItemGroup>
     <Reference Include="BurovSecureConnect">
-      <HintPath>C:\Users\User\source\repos\BurovSecureConnect\bin\Debug\netcoreapp3.1\BurovSecureConnect.dll</HintPath>
+      <HintPath>Library\BurovSecureConnect.dll</HintPath>
+      <Private>true</Private>
     </Reference>
   </ItemGroup>
 

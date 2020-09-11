@@ -125,7 +125,7 @@ namespace WpfTextEditor
                 MessageBox.Show("Мы добавили вас базу данных.");
             } else
             {
-                MessageBox.Show("вы успешно авторизованы.");
+                MessageBox.Show("Вы успешно авторизованы.");
             }
 
         }
